@@ -147,4 +147,6 @@
     <string name="dialog_title_nearby_devices_permission">Nearby Devices Permission</string>
     <string name="dialog_msg_nearby_devices_permission_use">Nearby Devices permission is required for scanning and connecting to BLE devices. Please grant it in Settings.</string>
 
+    <string name="wifi_reset_message">WiFi has been reset. Please reselect the WiFi credentials.</string>
+
 </resources>

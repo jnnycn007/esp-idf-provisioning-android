@@ -63,6 +63,7 @@ import java.util.UUID;
 import espressif.Constants;
 import espressif.NetworkConfig;
 import espressif.NetworkConstants;
+import espressif.NetworkCtrl;
 import espressif.NetworkScan;
 
 /**
@@ -593,6 +594,45 @@ public class ESPDevice {
         } else {
             sendData(path, data, listener);
         }
+    }
+
+    /**
+     * Send command to device to reset Wi-Fi status.
+     *
+     * @param listener ResponseListener to get callbacks of reset command.
+     */
+    public void resetWifiStatus(final ResponseListener listener) {
+
+        if (session == null || !session.isEstablished()) {
+            if (listener != null) {
+                listener.onFailure(new RuntimeException("Session is not established"));
+            }
+            return;
+        }
+
+        byte[] resetCommand = MessengeHelper.prepareResetWifiMsg();
+        session.sendDataToDevice(ESPConstants.HANDLER_PROV_CTRL, resetCommand, new ResponseListener() {
+
+            @Override
+            public void onSuccess(byte[] returnData) {
+                Constants.Status status = processResetWifiResponse(returnData);
+                if (listener != null) {
+                    if (status == Constants.Status.Success) {
+                        listener.onSuccess(returnData);
+                    } else {
+                        listener.onFailure(new RuntimeException("Failed to reset WiFi status"));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                e.printStackTrace();
+                if (listener != null) {
+                    listener.onFailure(e);
+                }
+            }
+        });
     }
 
     /**
@@ -1155,7 +1195,6 @@ public class ESPDevice {
                     if (provisionListener != null) {
                         provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.DEVICE_DISCONNECTED);
                     }
-                    session = null;
                     disableOnlyWifiNetwork();
 
                 } else if (wifiStationState == NetworkConstants.WifiStationState.Connecting) {
@@ -1165,7 +1204,6 @@ public class ESPDevice {
                         pollForWifiConnectionStatus();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                        session = null;
                         disableOnlyWifiNetwork();
                         provisionListener.onProvisioningFailed(new RuntimeException("Provisioning Failed"));
                     }
@@ -1182,7 +1220,6 @@ public class ESPDevice {
                     } else {
                         provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.UNKNOWN);
                     }
-                    session = null;
                     disableOnlyWifiNetwork();
                 }
             }
@@ -1214,7 +1251,6 @@ public class ESPDevice {
                     if (provisionListener != null) {
                         provisionListener.deviceProvisioningSuccess();
                     }
-                    session = null;
                     disableOnlyWifiNetwork();
 
                 } else if (threadNetworkState == NetworkConstants.ThreadNetworkState.Dettached) {
@@ -1223,7 +1259,6 @@ public class ESPDevice {
                     if (provisionListener != null) {
                         provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.DEVICE_DISCONNECTED);
                     }
-                    session = null;
                     disableOnlyWifiNetwork();
 
                 } else if (threadNetworkState == NetworkConstants.ThreadNetworkState.Attaching) {
@@ -1233,7 +1268,6 @@ public class ESPDevice {
                         pollForThreadConnectionStatus();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                        session = null;
                         disableOnlyWifiNetwork();
                         provisionListener.onProvisioningFailed(new RuntimeException("Provisioning Failed"));
                     }
@@ -1250,7 +1284,6 @@ public class ESPDevice {
                     } else {
                         provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.UNKNOWN);
                     }
-                    session = null;
                     disableOnlyWifiNetwork();
                 }
             }
@@ -1500,6 +1533,17 @@ public class ESPDevice {
         try {
             NetworkConfig.NetworkConfigPayload threadConfigPayload = NetworkConfig.NetworkConfigPayload.parseFrom(responseData);
             status = threadConfigPayload.getRespApplyThreadConfig().getStatus();
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+    private Constants.Status processResetWifiResponse(byte[] responseData) {
+        Constants.Status status = Constants.Status.InvalidSession;
+        try {
+            NetworkCtrl.NetworkCtrlPayload networkCtrlPayload = NetworkCtrl.NetworkCtrlPayload.parseFrom(responseData);
+            status = networkCtrlPayload.getStatus();
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
