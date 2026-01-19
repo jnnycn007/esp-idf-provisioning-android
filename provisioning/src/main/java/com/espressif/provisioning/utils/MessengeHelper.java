@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import espressif.NetworkConfig;
+import espressif.NetworkCtrl;
 import espressif.NetworkScan;
 
 public class MessengeHelper {
@@ -223,5 +224,19 @@ public class MessengeHelper {
                 .setCmdGetThreadStatus(cmdGetStatus)
                 .build();
         return threadConfigPayload.toByteArray();
+    }
+
+    // Send Wi-Fi Reset command
+    public static byte[] prepareResetWifiMsg() {
+
+        NetworkCtrl.CmdCtrlWifiReset cmdCtrlWifiReset = NetworkCtrl.CmdCtrlWifiReset
+                .newBuilder()
+                .build();
+        NetworkCtrl.NetworkCtrlPayload networkCtrlPayload = NetworkCtrl.NetworkCtrlPayload
+                .newBuilder()
+                .setMsg(NetworkCtrl.NetworkCtrlMsgType.TypeCmdCtrlWifiReset)
+                .setCmdCtrlWifiReset(cmdCtrlWifiReset)
+                .build();
+        return networkCtrlPayload.toByteArray();
     }
 }

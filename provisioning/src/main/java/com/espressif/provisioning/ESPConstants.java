@@ -45,6 +45,7 @@ public class ESPConstants {
     public static final String HANDLER_PROTO_VER = "proto-ver";
     public static final String HANDLER_PROV_SESSION = "prov-session";
     public static final String HANDLER_PROV_CONFIG = "prov-config";
+    public static final String HANDLER_PROV_CTRL = "prov-ctrl";
 
     // Event types
     public static final short EVENT_DEVICE_CONNECTED = 1;
