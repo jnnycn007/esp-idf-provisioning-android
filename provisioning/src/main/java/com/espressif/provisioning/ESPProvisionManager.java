@@ -135,7 +135,7 @@ public class ESPProvisionManager {
      * @param cameraSourcePreview CameraSourcePreview in which CameraSource needs to be display to scan QR code.
      * @param qrCodeScanListener  QRCodeScanListener
      */
-    @RequiresPermission(allOf = {Manifest.permission.CAMERA, Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.CAMERA, Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
     public void scanQRCode(final Activity activityContext, final CameraSourcePreview cameraSourcePreview, final QRCodeScanListener qrCodeScanListener) {
 
         isScanned = false;
@@ -166,7 +166,7 @@ public class ESPProvisionManager {
             }
 
             @Override
-            @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+            @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
             public void receiveDetections(Detector.Detections<Barcode> detections) {
 
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
@@ -199,7 +199,7 @@ public class ESPProvisionManager {
      * @param codeScanner        CodeScanner in which CameraSource needs to be display to scan QR code.
      * @param qrCodeScanListener QRCodeScanListener
      */
-    @RequiresPermission(allOf = {Manifest.permission.CAMERA, Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.CAMERA, Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
     public void scanQRCode(final CodeScanner codeScanner, final QRCodeScanListener qrCodeScanListener) {
 
         isScanned = false;
@@ -241,7 +241,7 @@ public class ESPProvisionManager {
      * @param activityContext    Activity Context for lifecycle owner.
      * @param qrCodeScanListener QRCodeScanListener for callbacks.
      */
-    @RequiresPermission(allOf = {Manifest.permission.CAMERA, Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.CAMERA, Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
     public void scanQRCode(final PreviewView cameraPreview, Activity activityContext, final QRCodeScanListener qrCodeScanListener) {
 
         isScanned = false;
@@ -424,7 +424,7 @@ public class ESPProvisionManager {
      * @param filters            The scan filters that will be used
      * @param bleScannerListener BleScanListener for scanning callbacks.
      */
-    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
     public void searchBleEspDevices(List<ScanFilter> filters, BleScanListener bleScannerListener) {
 
         Log.d(TAG, "Search for BLE devices");
@@ -438,7 +438,7 @@ public class ESPProvisionManager {
      * @param scanSettings       The scan settings that will be used
      * @param bleScannerListener BleScanListener for scanning callbacks.
      */
-    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
     public void searchBleEspDevices(ScanSettings scanSettings, BleScanListener bleScannerListener) {
 
         Log.d(TAG, "Search for BLE devices");
@@ -453,7 +453,7 @@ public class ESPProvisionManager {
      * @param scanSettings       The scan settings that will be used
      * @param bleScannerListener BleScanListener for scanning callbacks.
      */
-    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
     public void searchBleEspDevices(List<ScanFilter> filters, ScanSettings scanSettings, BleScanListener bleScannerListener) {
 
         Log.d(TAG, "Search for BLE devices");
@@ -466,7 +466,7 @@ public class ESPProvisionManager {
      *
      * @param bleScannerListener BleScanListener for scanning callbacks.
      */
-    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
     public void searchBleEspDevices(BleScanListener bleScannerListener) {
 
         Log.d(TAG, "Search for BLE devices");
@@ -480,7 +480,7 @@ public class ESPProvisionManager {
      * @param prefix             Prefix to filter devices from device name.
      * @param bleScannerListener BleScanListener for scanning callbacks.
      */
-    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
     public void searchBleEspDevices(String prefix, BleScanListener bleScannerListener) {
 
         Log.d(TAG, "Search for BLE devices");
@@ -491,7 +491,7 @@ public class ESPProvisionManager {
     /**
      * This method is used to stop BLE scanning.
      */
-    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH})
     public void stopBleScan() {
 
         if (bleScanner != null) {
@@ -572,8 +572,7 @@ public class ESPProvisionManager {
 
         @Override
         @RequiresPermission(allOf = {Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH,
-                Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CHANGE_WIFI_STATE,
-                Manifest.permission.ACCESS_WIFI_STATE})
+                Manifest.permission.CHANGE_WIFI_STATE, Manifest.permission.ACCESS_WIFI_STATE})
         public void run() {
 
             if (device.getTransportType().equals(ESPConstants.TransportType.TRANSPORT_BLE)) {

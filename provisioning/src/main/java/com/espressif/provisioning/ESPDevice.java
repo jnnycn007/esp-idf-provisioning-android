@@ -129,7 +129,7 @@ public class ESPDevice {
     /**
      * This method is used to connect ESPDevice.
      */
-    @RequiresPermission(allOf = {Manifest.permission.CHANGE_WIFI_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.CHANGE_WIFI_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.ACCESS_NETWORK_STATE})
     public void connectToDevice() {
 
         switch (transportType) {
@@ -187,7 +187,7 @@ public class ESPDevice {
      * @param ssid     SSID of the device.
      * @param password Password of Wi-Fi device.
      */
-    @RequiresPermission(allOf = {Manifest.permission.CHANGE_WIFI_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.ACCESS_FINE_LOCATION})
+    @RequiresPermission(allOf = {Manifest.permission.CHANGE_WIFI_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.ACCESS_NETWORK_STATE})
     public void connectWiFiDevice(String ssid, String password) {
 
         Log.d(TAG, "connectWiFiDevice ========== SSID : " + ssid + " and Password : " + password);
