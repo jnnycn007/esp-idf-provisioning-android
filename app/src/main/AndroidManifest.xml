@@ -71,7 +71,8 @@
         <activity
             android:name="com.espressif.ui.activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.espressif.ui.activities.WiFiScanActivity"
             android:label="@string/title_activity_wifi_scan_list"

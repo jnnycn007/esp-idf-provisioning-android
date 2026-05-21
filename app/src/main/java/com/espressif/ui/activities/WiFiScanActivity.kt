@@ -35,6 +35,7 @@ import com.espressif.provisioning.ESPProvisionManager
 import com.espressif.provisioning.WiFiAccessPoint
 import com.espressif.provisioning.listeners.WiFiScanListener
 import com.espressif.ui.adapters.WiFiListAdapter
+import com.espressif.ui.utils.applySystemBarsAsPadding
 import com.espressif.wifi_provisioning.R
 import com.espressif.wifi_provisioning.databinding.ActivityWifiScanListBinding
 import com.google.android.material.textfield.TextInputLayout
@@ -60,6 +61,7 @@ class WiFiScanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWifiScanListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.root.applySystemBarsAsPadding()
 
         initViews()
 

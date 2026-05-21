@@ -36,6 +36,7 @@ import androidx.appcompat.widget.Toolbar
 import com.espressif.AppConstants
 import com.espressif.provisioning.ESPConstants
 import com.espressif.provisioning.ESPProvisionManager
+import com.espressif.ui.utils.applySystemBarsAsPadding
 import com.espressif.wifi_provisioning.BuildConfig
 import com.espressif.wifi_provisioning.R
 import com.espressif.wifi_provisioning.databinding.ActivityEspMainBinding
@@ -61,6 +62,7 @@ class EspMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEspMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.root.applySystemBarsAsPadding()
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)

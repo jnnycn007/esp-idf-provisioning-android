@@ -30,6 +30,7 @@ import com.espressif.provisioning.ESPConstants.ProvisionFailureReason
 import com.espressif.provisioning.ESPProvisionManager
 import com.espressif.provisioning.listeners.ProvisionListener
 import com.espressif.provisioning.listeners.ResponseListener
+import com.espressif.ui.utils.applySystemBarsAsPadding
 import com.espressif.wifi_provisioning.R
 import com.espressif.wifi_provisioning.databinding.ActivityProvisionBinding
 import org.greenrobot.eventbus.EventBus
@@ -55,6 +56,7 @@ class ProvisionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProvisionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.root.applySystemBarsAsPadding()
 
         val intent = intent
         ssidValue = intent.getStringExtra(AppConstants.KEY_WIFI_SSID)

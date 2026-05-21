@@ -17,13 +17,16 @@ package com.espressif.ui.activities
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.espressif.AppConstants
+import com.espressif.ui.utils.applySystemBarsAsPadding
 import com.espressif.wifi_provisioning.R
 
 class SettingsActivity : AppCompatActivity() {
@@ -31,12 +34,18 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setTitle(R.string.title_activity_settings)
+
+        findViewById<View>(android.R.id.content).applySystemBarsAsPadding()
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.settings, SettingsFragment())
             .commit()
-        val actionBar = supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
 
         val tvAppVersion = findViewById<TextView>(R.id.tv_app_version)
 

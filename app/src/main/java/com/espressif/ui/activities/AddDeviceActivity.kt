@@ -46,6 +46,7 @@ import com.espressif.provisioning.ESPDevice
 import com.espressif.provisioning.ESPProvisionManager
 import com.espressif.provisioning.listeners.QRCodeScanListener
 import com.espressif.ui.utils.Utils
+import com.espressif.ui.utils.applySystemBarsAsPadding
 import com.espressif.wifi_provisioning.R
 import com.espressif.wifi_provisioning.databinding.ActivityAddDeviceBinding
 import org.greenrobot.eventbus.EventBus
@@ -79,6 +80,7 @@ class AddDeviceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddDeviceBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.root.applySystemBarsAsPadding()
         intent = Intent()
         sharedPreferences = getSharedPreferences(AppConstants.ESP_PREFERENCES, Context.MODE_PRIVATE)
         provisionManager = ESPProvisionManager.getInstance(applicationContext)

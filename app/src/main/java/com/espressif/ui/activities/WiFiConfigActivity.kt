@@ -27,6 +27,7 @@ import com.espressif.AppConstants
 import com.espressif.provisioning.DeviceConnectionEvent
 import com.espressif.provisioning.ESPConstants
 import com.espressif.provisioning.ESPProvisionManager
+import com.espressif.ui.utils.applySystemBarsAsPadding
 import com.espressif.wifi_provisioning.R
 import com.espressif.wifi_provisioning.databinding.ActivityWifiConfigBinding
 import org.greenrobot.eventbus.EventBus
@@ -43,6 +44,7 @@ class WiFiConfigActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWifiConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.root.applySystemBarsAsPadding()
 
         provisionManager = ESPProvisionManager.getInstance(applicationContext)
         initViews()

@@ -41,6 +41,7 @@ import com.espressif.provisioning.listeners.BleScanListener
 import com.espressif.ui.adapters.BleDeviceListAdapter
 import com.espressif.ui.models.BleDevice
 import com.espressif.ui.utils.Utils
+import com.espressif.ui.utils.applySystemBarsAsPadding
 import com.espressif.wifi_provisioning.BuildConfig
 import com.espressif.wifi_provisioning.R
 import com.espressif.wifi_provisioning.databinding.ActivityBleprovisionLandingBinding
@@ -82,7 +83,8 @@ class BLEProvisionLanding : ManualProvBaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBleprovisionLandingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+        binding.root.applySystemBarsAsPadding()
+
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
         if (!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
