@@ -35,6 +35,7 @@ import com.espressif.provisioning.ESPConstants;
 import com.espressif.provisioning.ESPProvisionManager;
 import com.espressif.provisioning.WiFiAccessPoint;
 import com.espressif.provisioning.listeners.WiFiScanListener;
+import com.espressif.ui.utils.InsetsUtilsKt;
 import com.espressif.ui.utils.Utils;
 import com.espressif.wifi_provisioning.R;
 import com.espressif.wifi_provisioning.databinding.ActivityThreadScanListBinding;
@@ -66,6 +67,7 @@ public class ThreadConfigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityThreadScanListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        InsetsUtilsKt.applySystemBarsAsPadding(binding.getRoot());
 
         handler = new Handler();
         threadNetworkList = new ArrayList<>();

@@ -1,43 +1,56 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/settings"
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
-        android:id="@+id/ll_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/margin_32"
-        android:orientation="vertical">
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/ll_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:alpha="0.5"
-            android:lineSpacingExtra="6sp"
-            android:text="@string/powered_by_esp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/margin_32"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_app_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:alpha="0.5"
-            android:lineSpacingExtra="6sp"
-            android:text="@string/app_version"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:alpha="0.5"
+                android:lineSpacingExtra="6sp"
+                android:text="@string/powered_by_esp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="12sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_app_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:alpha="0.5"
+                android:lineSpacingExtra="6sp"
+                android:text="@string/app_version"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="12sp" />
 
-</RelativeLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/ll_version" />
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

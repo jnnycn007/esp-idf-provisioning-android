@@ -29,6 +29,7 @@ import com.espressif.AppConstants
 import com.espressif.provisioning.DeviceConnectionEvent
 import com.espressif.provisioning.ESPConstants
 import com.espressif.ui.utils.Utils
+import com.espressif.ui.utils.applySystemBarsAsPadding
 import com.espressif.wifi_provisioning.R
 import com.espressif.wifi_provisioning.databinding.ActivityProvisionLandingBinding
 import org.greenrobot.eventbus.Subscribe
@@ -52,6 +53,7 @@ class ProvisionLanding : ManualProvBaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProvisionLandingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.root.applySystemBarsAsPadding()
         deviceName = intent.getStringExtra(AppConstants.KEY_DEVICE_NAME)
         pop = intent.getStringExtra(AppConstants.KEY_PROOF_OF_POSSESSION)
         initViews()

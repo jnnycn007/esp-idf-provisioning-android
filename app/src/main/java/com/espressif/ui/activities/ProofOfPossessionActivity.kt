@@ -27,6 +27,7 @@ import com.espressif.provisioning.DeviceConnectionEvent
 import com.espressif.provisioning.ESPConstants
 import com.espressif.provisioning.ESPProvisionManager
 import com.espressif.provisioning.listeners.ResponseListener
+import com.espressif.ui.utils.applySystemBarsAsPadding
 import com.espressif.wifi_provisioning.R
 import com.espressif.wifi_provisioning.databinding.ActivityPopBinding
 import org.greenrobot.eventbus.EventBus
@@ -48,6 +49,7 @@ class ProofOfPossessionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPopBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.root.applySystemBarsAsPadding()
 
         provisionManager = ESPProvisionManager.getInstance(applicationContext)
         deviceName = provisionManager.espDevice!!.deviceName
